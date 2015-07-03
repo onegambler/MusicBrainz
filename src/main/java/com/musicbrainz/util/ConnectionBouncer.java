@@ -1,4 +1,4 @@
-package com.kobalt.util;
+package com.musicbrainz.util;
 
 import com.google.common.base.Throwables;
 

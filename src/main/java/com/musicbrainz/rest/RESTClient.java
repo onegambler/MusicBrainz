@@ -1,4 +1,4 @@
-package com.kobalt.rest;
+package com.musicbrainz.rest;
 
 public interface RESTClient {
 

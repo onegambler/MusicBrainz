@@ -1,6 +1,6 @@
-package com.kobalt.rest;
+package com.musicbrainz.rest;
 
-import com.kobalt.io.LoggerSingleton;
+import com.musicbrainz.io.LoggerSingleton;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.UniformInterfaceException;
 import com.sun.jersey.api.client.WebResource;

@@ -1,4 +1,4 @@
-package com.kobalt.parser;
+package com.musicbrainz.parser;
 
 public interface ResponseParser<T extends Object> {
 

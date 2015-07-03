@@ -1,4 +1,4 @@
-package com.kobalt.objects;
+package com.musicbrainz.objects;
 
 import java.util.ArrayList;
 import java.util.List;

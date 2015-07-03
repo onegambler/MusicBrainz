@@ -1,6 +1,6 @@
-package com.kobalt.rest;
+package com.musicbrainz.rest;
 
-import com.kobalt.util.ConnectionBouncer;
+import com.musicbrainz.util.ConnectionBouncer;
 
 import javax.ws.rs.core.UriBuilder;
 import java.util.function.Supplier;

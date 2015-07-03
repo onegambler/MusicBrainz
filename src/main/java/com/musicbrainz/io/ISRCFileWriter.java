@@ -1,6 +1,6 @@
-package com.kobalt.io;
+package com.musicbrainz.io;
 
-import com.kobalt.objects.ISRC;
+import com.musicbrainz.objects.ISRC;
 
 public class ISRCFileWriter extends FileWriter<ISRC> {
 

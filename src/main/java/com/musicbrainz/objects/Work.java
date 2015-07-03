@@ -1,4 +1,4 @@
-package com.kobalt.objects;
+package com.musicbrainz.objects;
 
 public class Work extends ApiObject {
 

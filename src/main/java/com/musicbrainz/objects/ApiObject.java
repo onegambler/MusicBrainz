@@ -1,4 +1,4 @@
-package com.kobalt.objects;
+package com.musicbrainz.objects;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
 

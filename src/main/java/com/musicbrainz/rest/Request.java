@@ -1,13 +1,11 @@
-package com.kobalt.rest;
+package com.musicbrainz.rest;
 
 import lombok.Data;
 
 import java.net.URI;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
-import static java.util.Objects.nonNull;
 import static java.util.Objects.requireNonNull;
 
 @Data

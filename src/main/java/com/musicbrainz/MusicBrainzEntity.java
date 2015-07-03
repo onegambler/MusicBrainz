@@ -1,4 +1,4 @@
-package com.kobalt;
+package com.musicbrainz;
 
 public enum MusicBrainzEntity {
     AREA("area"),

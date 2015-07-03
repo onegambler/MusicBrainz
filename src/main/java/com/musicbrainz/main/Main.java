@@ -1,14 +1,14 @@
-package com.kobalt.main;
+package com.musicbrainz.main;
 
 import com.google.common.base.Preconditions;
-import com.kobalt.io.FileWriter;
-import com.kobalt.io.ISRCFileWriter;
-import com.kobalt.io.LoggerSingleton;
-import com.kobalt.objects.ISRC;
-import com.kobalt.parser.ISRCXMLParser;
-import com.kobalt.parser.ResponseParser;
-import com.kobalt.rest.JerseyClient;
-import com.kobalt.rest.RESTClient;
+import com.musicbrainz.io.FileWriter;
+import com.musicbrainz.io.ISRCFileWriter;
+import com.musicbrainz.io.LoggerSingleton;
+import com.musicbrainz.objects.ISRC;
+import com.musicbrainz.parser.ISRCXMLParser;
+import com.musicbrainz.parser.ResponseParser;
+import com.musicbrainz.rest.JerseyClient;
+import com.musicbrainz.rest.RESTClient;
 import com.sun.jersey.api.client.Client;
 
 import javax.xml.parsers.ParserConfigurationException;

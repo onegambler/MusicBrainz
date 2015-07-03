@@ -1,10 +1,10 @@
-package com.kobalt.parser;
+package com.musicbrainz.parser;
 
 import com.google.common.base.Throwables;
-import com.kobalt.objects.Artist;
-import com.kobalt.objects.ISRC;
-import com.kobalt.objects.Recording;
-import com.kobalt.objects.Work;
+import com.musicbrainz.objects.Artist;
+import com.musicbrainz.objects.ISRC;
+import com.musicbrainz.objects.Recording;
+import com.musicbrainz.objects.Work;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
