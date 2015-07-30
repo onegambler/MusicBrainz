@@ -1,11 +1,18 @@
 package com.musicbrainz.objects;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
+@XmlRootElement(name = "isrc")
 public class ISRC extends ApiObject {
 
+    @XmlAttribute(name = "id")
     private String id;
+
+    @XmlElement
     private List<Recording> recordingList;
 
     public ISRC() {

@@ -3,7 +3,7 @@ package com.musicbrainz.main;
 import com.google.common.base.Preconditions;
 import com.musicbrainz.io.FileWriter;
 import com.musicbrainz.io.ISRCFileWriter;
-import com.musicbrainz.io.LoggerSingleton;
+import com.musicbrainz.io.MusicBrainzLogger;
 import com.musicbrainz.objects.ISRC;
 import com.musicbrainz.parser.ISRCXMLParser;
 import com.musicbrainz.parser.ResponseParser;
@@ -23,7 +23,7 @@ public class Main {
 
     private static final String END_POINT = "http://musicbrainz.org/ws/2/isrc/%s?inc=work-rels+artists";
 
-    private static final Logger logger = LoggerSingleton.getLogger();
+    private static final MusicBrainzLogger logger = MusicBrainzLogger.getLogger();
 
     public static void main(String[] args) throws ParserConfigurationException {
 
@@ -35,32 +35,32 @@ public class Main {
         String endPoint;
         String response;
         String line;
-        logger.info("Ready to process file " + fileName);
+        logger.logInfo("Ready to process file " + fileName);
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
 
             try (FileWriter<ISRC> writer = new ISRCFileWriter(new java.io.FileWriter(fileName + ".csv"))) {
 
                 while ((line = reader.readLine()) != null) {
-                    logger.info("Calling MusicBrainz with id " + line);
+                    logger.logInfo("Calling MusicBrainz with id " + line);
                     endPoint = String.format(END_POINT, line);
                     try {
-                        response = client.get(endPoint);
+                        response = client.get(null);
 
                         checkNotNull(response, "GET response is null");
                         ISRC isrcResponse = parser.parse(response);
                         checkNotNull(isrcResponse, "ISRC object parsed is null");
                         writer.write(isrcResponse);
-                        logger.info("CALL SUCCESSFUL! for id " + line);
+                        logger.logInfo("CALL SUCCESSFUL! for id " + line);
                     } catch (RuntimeException e) {
-                        logger.severe("ERROR: Impossible to retrieve information for id " + line + ". Error: " + e.getMessage());
+                        logger.logError("ERROR: Impossible to retrieve information for id " + line + ". Error: " + e.getMessage());
                     }
-                    logger.info("Now taking a nap before trying with next one");
+                    logger.logInfo("Now taking a nap before trying with next one");
                     Thread.sleep(2000);
                 }
             }
 
         } catch (Exception e) {
-            logger.severe("REALLY BAD ERROR! " + e.getMessage());
+            logger.logInfo("REALLY BAD ERROR! " + e.getMessage());
         }
     }
 }

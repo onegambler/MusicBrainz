@@ -2,6 +2,7 @@ package com.musicbrainz.rest;
 
 import lombok.Data;
 
+import javax.ws.rs.core.MediaType;
 import java.net.URI;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,11 +15,13 @@ public class Request {
     private URI uri;
     private Set<KeyValuePair> arguments;
     private RequestType type;
+    private MediaType acceptedMediaType;
 
-    private Request(URI uri, Set<KeyValuePair> arguments, RequestType type) {
+    private Request(URI uri, Set<KeyValuePair> arguments, RequestType type, MediaType acceptedMediaType) {
         this.uri = uri;
         this.arguments = arguments;
         this.type = type;
+        this.acceptedMediaType = acceptedMediaType;
     }
 
     public void addQueryArgument(String key, String value) {
@@ -37,6 +40,7 @@ public class Request {
         private URI uri;
         private Set<KeyValuePair> arguments;
         private RequestType type;
+        private MediaType acceptedMediaType;
 
         private RequestBuilder(){}
 
@@ -66,13 +70,18 @@ public class Request {
         }
 
         public RequestBuilder post() {
-            this.type = RequestType.GET;
+            this.type = RequestType.POST;
+            return this;
+        }
+
+        public RequestBuilder accept(MediaType acceptedMediaType) {
+            this.acceptedMediaType = acceptedMediaType;
             return this;
         }
 
         public Request create() {
             validate();
-            return new Request(uri, arguments, type);
+            return new Request(uri, arguments, type, acceptedMediaType);
         }
 
         private void validate() {
@@ -82,7 +91,7 @@ public class Request {
     }
 
     private enum RequestType {
-        GET, type, POST
+        GET, POST
     }
 
     @Data

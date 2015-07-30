@@ -1,6 +1,6 @@
-package com.musicbrainz;
+package com.musicbrainz.domain;
 
-public enum MusicBrainzEntity {
+public enum Resource {
     AREA("area"),
     ARTIST("artist"),
     EVENT("event"),
@@ -13,9 +13,13 @@ public enum MusicBrainzEntity {
     WORK("work"),
     URL("url");
 
-    private String urlValue;
+    private String uriValue;
 
-    MusicBrainzEntity(String urlValue) {
-        this.urlValue = urlValue;
+    Resource(String uriValue) {
+        this.uriValue = uriValue;
+    }
+
+    public String getUriValue() {
+        return uriValue;
     }
 }
