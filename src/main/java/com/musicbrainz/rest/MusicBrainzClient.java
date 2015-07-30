@@ -1,8 +1,6 @@
 package com.musicbrainz.rest;
 
-import com.musicbrainz.concurrency.ConnectionBouncer;
 import com.musicbrainz.domain.Resource;
-import com.sun.jersey.api.client.Client;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriBuilder;
@@ -23,7 +21,7 @@ public class MusicBrainzClient {
     }
 
     private String invokeWithDelay(Supplier<String> callFunction) {
-        ConnectionBouncer.getInstance().waitTurn();
+        RESTClient.ConnectionBouncer.getInstance().waitTurn();
         return callFunction.get();
     }
 
@@ -86,7 +84,7 @@ public class MusicBrainzClient {
 
     private UriBuilder addQueryParamIfNotNull(UriBuilder builder, String queryParamName, String queryParamValue) {
         if (nonNull(queryParamValue)) {
-            builder.queryParam("queryParamName", queryParamValue);
+            builder.queryParam(queryParamName, queryParamValue);
         }
         return builder;
     }
@@ -97,15 +95,4 @@ public class MusicBrainzClient {
         }
         return builder;
     }
-
-    public static void main(String[] args) {
-        try {
-            MusicBrainzClient musicBrainzClient = new MusicBrainzClient(new JerseyClient(Client.create()));
-            //System.out.println("musicBrainzClient = " + musicBrainzClient.browse(Resource.RELEASE, Resource.LABEL, "47e718e1-7ee4-460c-b1cc-1192a841c6e5"));
-            System.out.println("musicBrainzClient = " + musicBrainzClient.search(Resource.AREA, "Ele-de-france"));
-        } finally {
-            ConnectionBouncer.getInstance().stop();
-        }
-    }
-
 }

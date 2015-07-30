@@ -1,6 +1,6 @@
 package com.musicbrainz.objects;
 
-public class Work extends ApiObject {
+public class Work {
 
 
     private String id;
@@ -19,14 +19,4 @@ public class Work extends ApiObject {
         this.iswc = iswc;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        appendIfNotNull(sb, id);
-        sb.append(COMMA_SEPARATOR);
-        appendIfNotNull(sb, escape(title));
-        sb.append(COMMA_SEPARATOR);
-        appendIfNotNull(sb, iswc);
-        return sb.toString();
-    }
 }

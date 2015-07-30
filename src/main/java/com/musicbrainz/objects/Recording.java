@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @EqualsAndHashCode(callSuper = false)
-public class Recording extends ApiObject {
+public class Recording {
 
     private String id;
     private String recordingID;

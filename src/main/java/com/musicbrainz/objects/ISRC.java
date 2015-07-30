@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @XmlRootElement(name = "isrc")
-public class ISRC extends ApiObject {
+public class ISRC {
 
     @XmlAttribute(name = "id")
     private String id;
@@ -25,21 +25,5 @@ public class ISRC extends ApiObject {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        int recordingListSize = getRecordingList().size();
-        for (int i = 0; i < recordingListSize; i++) {
-            sb.append(id);
-            sb.append(COMMA_SEPARATOR);
-            sb.append(recordingList.get(i).toString());
-            sb.append(COMMA_SEPARATOR);
-            if (i < recordingListSize - 1) {
-                sb.append("\n");
-            }
-        }
-        return sb.toString();
     }
 }
