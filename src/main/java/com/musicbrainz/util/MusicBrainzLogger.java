@@ -1,4 +1,4 @@
-package com.musicbrainz.io;
+package com.musicbrainz.util;
 
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -8,12 +8,12 @@ import java.util.logging.SimpleFormatter;
 public class MusicBrainzLogger {
 
     private static Logger logger;
-    private static final String LOGGER_PATH = "musicbrainz.log";
+    private static final String LOGGER_FILE_PATH = "musicbrainz.log";
 
     private MusicBrainzLogger() {
-        logger =  Logger.getLogger("logger");
+        logger = Logger.getLogger("logger");
         try {
-            FileHandler fh = new FileHandler(LOGGER_PATH);
+            FileHandler fh = new FileHandler(LOGGER_FILE_PATH);
             logger.addHandler(fh);
             SimpleFormatter formatter = new SimpleFormatter();
             fh.setFormatter(formatter);
@@ -26,18 +26,24 @@ public class MusicBrainzLogger {
         return SingletonHolder.LOGGER;
     }
 
+    public void logDebug(String message, String... args) {
+        if (logger.isLoggable(Level.FINE)) {
+            logger.info(String.format(message, args));
+        }
+    }
+
     public static class SingletonHolder {
         public static final MusicBrainzLogger LOGGER = new MusicBrainzLogger();
     }
 
     public void logInfo(String message, String... args) {
-        if(logger.isLoggable(Level.INFO)) {
+        if (logger.isLoggable(Level.INFO)) {
             logger.info(String.format(message, args));
         }
     }
 
     public void logWarning(String message, String... args) {
-        if(logger.isLoggable(Level.WARNING)) {
+        if (logger.isLoggable(Level.WARNING)) {
             logger.warning(String.format(message, args));
         }
     }

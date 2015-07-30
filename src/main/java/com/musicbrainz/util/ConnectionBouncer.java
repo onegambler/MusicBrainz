@@ -1,4 +1,4 @@
-package com.musicbrainz.concurrency;
+package com.musicbrainz.util;
 
 import com.google.common.base.Throwables;
 import com.musicbrainz.io.MusicBrainzLogger;
@@ -6,7 +6,6 @@ import com.musicbrainz.io.MusicBrainzLogger;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.Semaphore;
-import java.util.logging.Logger;
 
 public class ConnectionBouncer {
 
