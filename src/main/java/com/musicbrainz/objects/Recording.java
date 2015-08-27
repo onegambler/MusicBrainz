@@ -1,10 +1,10 @@
 package com.musicbrainz.objects;
 
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
-@Getter
-@EqualsAndHashCode(callSuper = false)
+@Data
 public class Recording {
 
     private String id;
@@ -12,9 +12,4 @@ public class Recording {
     private String title;
     private Artist artist;
     private Work work;
-
-    public Recording() {
-        this.artist = new Artist();
-        this.work = new Work();
-    }
 }

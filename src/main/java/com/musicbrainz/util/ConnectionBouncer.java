@@ -1,7 +1,6 @@
 package com.musicbrainz.util;
 
 import com.google.common.base.Throwables;
-import com.musicbrainz.io.MusicBrainzLogger;
 
 import java.util.Timer;
 import java.util.TimerTask;

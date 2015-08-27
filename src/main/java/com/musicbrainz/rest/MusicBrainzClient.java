@@ -1,6 +1,7 @@
 package com.musicbrainz.rest;
 
 import com.musicbrainz.domain.Resource;
+import com.musicbrainz.util.ConnectionBouncer;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriBuilder;
@@ -21,7 +22,7 @@ public class MusicBrainzClient {
     }
 
     private String invokeWithDelay(Supplier<String> callFunction) {
-        RESTClient.ConnectionBouncer.getInstance().waitTurn();
+        ConnectionBouncer.getInstance().waitTurn();
         return callFunction.get();
     }
 
@@ -38,11 +39,13 @@ public class MusicBrainzClient {
     public String browse(Resource mainResource, Resource queryResource, String id, String limit, String offset, String... included) {
         requireNonNull(mainResource, "Main resource cannot be null");
         requireNonNull(queryResource, "Query resource cannot be null");
-        UriBuilder uriBuilder = UriBuilder.fromUri(MUSIC_BRAINZ_END_POINT).path(mainResource.getUriValue())
+        UriBuilder uriBuilder = UriBuilder
+                .fromUri(MUSIC_BRAINZ_END_POINT)
+                .path(mainResource.getUriValue())
                 .queryParam(queryResource.getUriValue(), id);
 
-        addQueryParamIfNotNull(uriBuilder, "limit", limit);
-        addQueryParamIfNotNull(uriBuilder, "offset", offset);
+        addQueryParamIfNotNull(uriBuilder, LIMIT_PARAM_NAME, limit);
+        addQueryParamIfNotNull(uriBuilder, OFFSET_PARAM_NAME, offset);
         addIncludeQueryParamIfNotNull(uriBuilder, included);
 
         return get(uriBuilder.build());
@@ -62,8 +65,8 @@ public class MusicBrainzClient {
         requireNonNull(query, "Query cannot be null");
         UriBuilder uriBuilder = UriBuilder.fromUri(MUSIC_BRAINZ_END_POINT)
                 .path(resource.getUriValue());
-        addQueryParamIfNotNull(uriBuilder, "limit", limit);
-        addQueryParamIfNotNull(uriBuilder, "offset", offset);
+        addQueryParamIfNotNull(uriBuilder, LIMIT_PARAM_NAME, limit);
+        addQueryParamIfNotNull(uriBuilder, OFFSET_PARAM_NAME, offset);
 
         uriBuilder.queryParam("query", query);
 
@@ -95,4 +98,7 @@ public class MusicBrainzClient {
         }
         return builder;
     }
+
+    public static final String LIMIT_PARAM_NAME = "limit";
+    public static final String OFFSET_PARAM_NAME = "offset";
 }
